@@ -9,3 +9,4 @@ Currently, two official plugins are available:
 "# tenzies_game" 
 "# tenzies_app" 
 "# tenzies_dice_game" 
+"# tenzies_game" 
