@@ -7,7 +7,7 @@ import Confetti from 'react-confetti';
 function App() {
   const [dices, setDices] = React.useState(allNewDices());
   const [isWon, setIsWon] = React.useState(false);
-  const [clicks, setClicks] = React.useState(0);
+  const [totalRolls, setTotalRolls] = React.useState(0);
   const [timeTaken, setTimeTaken] = React.useState({
     startTime: Date.now(),
     endTime: null,
@@ -50,7 +50,7 @@ function App() {
 
       //reset all
       setDices(allNewDices());
-      setClicks(0);
+      setTotalRolls(0);
       setTimeTaken({
         startTime: Date.now(),
         endTime: null,
@@ -83,9 +83,6 @@ function App() {
         die.id === id ? { ...die, isHeld: !die.isHeld } : die
       )
     );
-
-    //Update total clicks 
-    setClicks(prevClicks => prevClicks + 1);
   }
 
   const diceElements = dices.map((die) => (
@@ -103,7 +100,7 @@ function App() {
       //new total game
       setIsWon(false);
       setDices(allNewDices());
-      setClicks(0);
+      setTotalRolls(0);
       setTimeTaken({
         startTime: Date.now(),
         endTime: null,
@@ -114,6 +111,9 @@ function App() {
         oldDices.map((die) => (die.isHeld ? die : generateNewDie()))
       );
     }
+
+    //Update total clicks 
+    setTotalRolls(prevClicks => prevClicks + 1);
   }
 
   return (
@@ -134,7 +134,7 @@ function App() {
 
       {/* Status -> Total clicks, time took e.t.c */}
       <div className='status'>
-        <h5>Total clicks: {clicks}</h5>
+        <h5>Total rolls: {totalRolls}</h5>
         <h5>Time taken: {timeTaken.timeTaken} seconds</h5>
       </div>
     </main>
